@@ -1,7 +1,7 @@
 require "rails/generators"
 require "rails/generators/rails/model/model_generator"
-require "generators/scenic/view/view_generator"
-require "generators/scenic/materializable"
+require "generators/fx/view/view_generator"
+require "generators/fx/materializable"
 
 module Fx
   module Generators
@@ -23,7 +23,7 @@ module Fx
       end
 
       def invoke_view_generator
-        invoke "scenic:view", [table_name], options
+        invoke "fx:view", [table_name], options
       end
 
       private

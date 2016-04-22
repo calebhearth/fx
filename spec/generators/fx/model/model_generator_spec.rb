@@ -1,5 +1,5 @@
 require "spec_helper"
-require "generators/scenic/model/model_generator"
+require "generators/fx/model/model_generator"
 
 module Fx::Generators
   describe ModelGenerator, :generator do

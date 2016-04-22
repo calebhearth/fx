@@ -1,6 +1,6 @@
 require "rails/generators"
 require "rails/generators/active_record"
-require "generators/scenic/materializable"
+require "generators/fx/materializable"
 
 module Fx
   module Generators

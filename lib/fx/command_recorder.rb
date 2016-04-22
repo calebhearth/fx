@@ -1,4 +1,4 @@
-require "scenic/command_recorder/statement_arguments"
+require "fx/command_recorder/statement_arguments"
 
 module Fx
   # @api private
@@ -20,24 +20,24 @@ module Fx
     end
 
     def invert_drop_view(args)
-      perform_scenic_inversion(:create_view, args)
+      perform_fx_inversion(:create_view, args)
     end
 
     def invert_update_view(args)
-      perform_scenic_inversion(:update_view, args)
+      perform_fx_inversion(:update_view, args)
     end
 
     private
 
-    def perform_scenic_inversion(method, args)
-      scenic_args = StatementArguments.new(args)
+    def perform_fx_inversion(method, args)
+      fx_args = StatementArguments.new(args)
 
-      if scenic_args.revert_to_version.nil?
+      if fx_args.revert_to_version.nil?
         message = "#{method} is reversible only if given a revert_to_version"
         raise ActiveRecord::IrreversibleMigration, message
       end
 
-      [method, scenic_args.invert_version.to_a]
+      [method, fx_args.invert_version.to_a]
     end
   end
 end

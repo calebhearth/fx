@@ -6,7 +6,7 @@ module Fx
   #
   # @see Fx.load
   class Railtie < Rails::Railtie
-    initializer "scenic.load" do
+    initializer "fx.load" do
       ActiveSupport.on_load :active_record do
         Fx.load
       end

@@ -1,20 +1,20 @@
-require "scenic/configuration"
-require "scenic/adapters/postgres"
-require "scenic/command_recorder"
-require "scenic/definition"
-require "scenic/railtie"
-require "scenic/schema_dumper"
-require "scenic/statements"
-require "scenic/version"
-require "scenic/view"
-require "scenic/index"
+require "fx/configuration"
+require "fx/adapters/postgres"
+require "fx/command_recorder"
+require "fx/definition"
+require "fx/railtie"
+require "fx/schema_dumper"
+require "fx/statements"
+require "fx/version"
+require "fx/view"
+require "fx/index"
 
 # Fx adds methods `ActiveRecord::Migration` to create and manage database
 # views in Rails applications.
 module Fx
   # Hooks Fx into Rails.
   #
-  # Enables scenic migration methods, migration reversability, and `schema.rb`
+  # Enables fx migration methods, migration reversability, and `schema.rb`
   # dumping.
   def self.load
     ActiveRecord::ConnectionAdapters::AbstractAdapter.include Fx::Statements

@@ -4,8 +4,8 @@ module Fx
   #
   # See:
   #
-  # * {file:lib/generators/scenic/model/USAGE Model Generator}
-  # * {file:lib/generators/scenic/view/USAGE View Generator}
+  # * {file:lib/generators/fx/model/USAGE Model Generator}
+  # * {file:lib/generators/fx/view/USAGE View Generator}
   # * {file:README.md README}
   module Generators
   end

@@ -1,5 +1,5 @@
 require "spec_helper"
-require "generators/scenic/view/view_generator"
+require "generators/fx/view/view_generator"
 
 describe Fx::Generators::ViewGenerator, :generator do
   it "creates view definition and migration files" do

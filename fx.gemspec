@@ -1,10 +1,10 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'scenic/version'
+require 'fx/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'scenic'
+  spec.name          = 'fx'
   spec.version       = Fx::VERSION
   spec.authors       = ['Derek Prior', 'Caleb Thompson']
   spec.email         = ['derekprior@gmail.com', 'caleb@calebthompson.io']
@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
     Adds methods to ActiveRecord::Migration to create and manage database views
     in Rails
   DESCRIPTION
-  spec.homepage      = 'https://github.com/thoughtbot/scenic'
+  spec.homepage      = 'https://github.com/thoughtbot/fx'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")

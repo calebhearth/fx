@@ -1,8 +1,8 @@
 # f(x)
 
-[![Build Status](https://travis-ci.org/thoughtbot/scenic.svg)](https://travis-ci.org/thoughtbot/scenic)
+[![Build Status](https://travis-ci.org/thoughtbot/fx.svg)](https://travis-ci.org/thoughtbot/fx)
 [![Code Climate](https://codeclimate.com/repos/53c9736269568066a3000c35/badges/85aa9b19f3037252c55d/gpa.svg)](https://codeclimate.com/repos/53c9736269568066a3000c35/feed)
-[![Documentation Quality](http://inch-ci.org/github/thoughtbot/scenic.svg?branch=master)](http://inch-ci.org/github/thoughtbot/scenic)
+[![Documentation Quality](http://inch-ci.org/github/thoughtbot/fx.svg?branch=master)](http://inch-ci.org/github/thoughtbot/fx)
 
 f(x) adds methods to `ActiveRecord::Migration` to create and manage database
 views in Rails.
@@ -26,7 +26,7 @@ can create the migration and the corresponding view definition file with the
 following command:
 
 ```sh
-$ rails generate scenic:view search_results
+$ rails generate fx:view search_results
       create  db/views/search_results_v01.sql
       create  db/migrate/[TIMESTAMP]_create_search_results.rb
 ```
@@ -66,7 +66,7 @@ $ rake db:migrate
 Here's where f(x) really shines. Run that same view generator once more:
 
 ```sh
-$ rails generate scenic:view search_results
+$ rails generate fx:view search_results
       create  db/views/search_results_v02.sql
       create  db/migrate/[TIMESTAMP]_update_search_results_to_version_2.rb
 ```
@@ -97,15 +97,15 @@ class SearchResult < ActiveRecord::Base
 end
 ```
 
-f(x) even provides a `scenic:model` generator that is a superset of
-`scenic:view`.  It will act identically to the Rails `model` generator except
+f(x) even provides a `fx:model` generator that is a superset of
+`fx:view`.  It will act identically to the Rails `model` generator except
 that it will create a f(x) view migration rather than a table migration.
 
 There is no special base class or mixin needed. If desired, any code the model
 generator adds can be removed without worry.
 
 ```sh
-$ rails generate scenic:model recent_status
+$ rails generate fx:model recent_status
       invoke  active_record
       create    app/models/recent_status.rb
       invoke    test_unit
@@ -121,7 +121,7 @@ Materialized views are essentially SQL queries whose results can be cached to a
 table, indexed, and periodically refreshed when desired. Does f(x) support
 those? Of course!
 
-The `scenic:view` and `scenic:model` generators accept a `--materialized`
+The `fx:view` and `fx:model` generators accept a `--materialized`
 option for this purpose. When used with the model generator, your model will
 have the following method defined as a convenience to aid in scheduling
 refreshes:
