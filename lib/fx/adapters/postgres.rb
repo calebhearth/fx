@@ -2,7 +2,7 @@ require_relative "postgres/connection"
 require_relative "postgres/errors"
 require_relative "postgres/index_reapplication"
 require_relative "postgres/indexes"
-require_relative "postgres/views"
+require_relative "postgres/functions"
 
 module Fx
   # Fx database adapters.
@@ -43,21 +43,27 @@ module Fx
       # This collection of functions is used by the [Fx::SchemaDumper] to
       # populate the `schema.rb` file.
       #
-      # @return [Array<Fx::View>]
+      # @return [Array<Fx::Functions>]
       def functions
-        Views.new(connection).all
+        Functions.new(connection).all
       end
 
-      # Creates a view in the database.
+      # Creates a function in the database.
       #
-      # This is typically called in a migration via {Statements#create_view}.
+      # This is typically called in a migration via {Statements#create_function}.
       #
-      # @param name The name of the view to create
+      # @param name The name of the function to create
+      # @param arguments Array of arrays of [name, type] or [name, type, default_expression]
+      # @param returns Array of arrays of [name, type]
       # @param sql_definition The SQL schema for the view.
       #
       # @return [void]
-      def create_view(name, sql_definition)
-        execute "CREATE VIEW #{quote_table_name(name)} AS #{sql_definition};"
+      def create_function(name, arguments, sql_definition)
+        args = arguments.map do |argument_name, type, default_expression|
+          arg = "#{argument_name} #{type}"
+          arg << "DEFAULT #{default_expression}" if default expression
+        end.join(", ")
+        execute "CREATE OR REPLACE FUNCTION #{quote_table_name(name)} (#{args}) AS #{sql_definition};"
       end
 
       # Updates a view in the database.

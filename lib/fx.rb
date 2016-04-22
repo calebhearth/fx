@@ -6,11 +6,11 @@ require "fx/railtie"
 require "fx/schema_dumper"
 require "fx/statements"
 require "fx/version"
-require "fx/view"
+require "fx/function"
 require "fx/index"
 
 # Fx adds methods `ActiveRecord::Migration` to create and manage database
-# views in Rails applications.
+# functions in Rails applications.
 module Fx
   # Hooks Fx into Rails.
   #
