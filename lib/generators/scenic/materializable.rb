@@ -1,4 +1,4 @@
-module Scenic
+module Fx
   module Generators
     # @api private
     module Materializable

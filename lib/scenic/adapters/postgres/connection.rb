@@ -1,4 +1,4 @@
-module Scenic
+module Fx
   module Adapters
     class Postgres
       # Decorates an ActiveRecord connection with methods that help determine

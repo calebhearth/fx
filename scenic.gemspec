@@ -5,7 +5,7 @@ require 'scenic/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'scenic'
-  spec.version       = Scenic::VERSION
+  spec.version       = Fx::VERSION
   spec.authors       = ['Derek Prior', 'Caleb Thompson']
   spec.email         = ['derekprior@gmail.com', 'caleb@calebthompson.io']
   spec.summary       = %q{Support for database views in Rails migrations}

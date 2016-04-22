@@ -1,5 +1,5 @@
-module Scenic
-  # Methods that are made available in migrations for managing Scenic views.
+module Fx
+  # Methods that are made available in migrations for managing Fx views.
   module Statements
     # Create a new database view.
     #
@@ -32,9 +32,9 @@ module Scenic
       sql_definition ||= definition(name, version)
 
       if materialized
-        Scenic.database.create_materialized_view(name, sql_definition)
+        Fx.database.create_materialized_view(name, sql_definition)
       else
-        Scenic.database.create_view(name, sql_definition)
+        Fx.database.create_view(name, sql_definition)
       end
     end
 
@@ -53,9 +53,9 @@ module Scenic
     #
     def drop_view(name, revert_to_version: nil, materialized: false)
       if materialized
-        Scenic.database.drop_materialized_view(name)
+        Fx.database.drop_materialized_view(name)
       else
-        Scenic.database.drop_view(name)
+        Fx.database.drop_view(name)
       end
     end
 
@@ -83,16 +83,16 @@ module Scenic
       sql_definition = definition(name, version)
 
       if materialized
-        Scenic.database.update_materialized_view(name, sql_definition)
+        Fx.database.update_materialized_view(name, sql_definition)
       else
-        Scenic.database.update_view(name, sql_definition)
+        Fx.database.update_view(name, sql_definition)
       end
     end
 
     private
 
     def definition(name, version)
-      Scenic::Definition.new(name, version).to_sql
+      Fx::Definition.new(name, version).to_sql
     end
   end
 end

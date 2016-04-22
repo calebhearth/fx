@@ -1,6 +1,6 @@
 require "spec_helper"
 
-module Scenic
+module Fx
   module Adapters
     describe Postgres::Connection do
       describe "supports_materialized_views?" do

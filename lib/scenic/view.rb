@@ -1,4 +1,4 @@
-module Scenic
+module Fx
   # The in-memory representation of a view definition.
   #
   # **This object is used internally by adapters and the schema dumper and is

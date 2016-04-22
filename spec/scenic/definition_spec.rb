@@ -1,6 +1,6 @@
 require "spec_helper"
 
-module Scenic
+module Fx
   describe Definition do
     describe "to_sql" do
       it "returns the content of a view definition" do

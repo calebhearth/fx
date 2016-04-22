@@ -1,6 +1,6 @@
 require "spec_helper"
 
-module Scenic
+module Fx
   module Adapters
     describe Postgres, :db do
       describe "#create_view" do
@@ -31,7 +31,7 @@ module Scenic
           connection = double("Connection", supports_materialized_views?: false)
           connectable = double("Connectable", connection: connection)
           adapter = Postgres.new(connectable)
-          err = Scenic::Adapters::Postgres::MaterializedViewsNotSupportedError
+          err = Fx::Adapters::Postgres::MaterializedViewsNotSupportedError
 
           expect { adapter.create_materialized_view("greetings", "select 1") }
             .to raise_error err
@@ -66,7 +66,7 @@ module Scenic
           connection = double("Connection", supports_materialized_views?: false)
           connectable = double("Connectable", connection: connection)
           adapter = Postgres.new(connectable)
-          err = Scenic::Adapters::Postgres::MaterializedViewsNotSupportedError
+          err = Fx::Adapters::Postgres::MaterializedViewsNotSupportedError
 
           expect { adapter.drop_materialized_view("greetings") }
             .to raise_error err
@@ -78,7 +78,7 @@ module Scenic
           connection = double("Connection", supports_materialized_views?: false)
           connectable = double("Connectable", connection: connection)
           adapter = Postgres.new(connectable)
-          err = Scenic::Adapters::Postgres::MaterializedViewsNotSupportedError
+          err = Fx::Adapters::Postgres::MaterializedViewsNotSupportedError
 
           expect { adapter.refresh_materialized_view(:tests) }
             .to raise_error err
@@ -98,7 +98,7 @@ module Scenic
             connection = double("Connection", postgresql_version: 90300)
             connectable = double("Connectable", connection: connection)
             adapter = Postgres.new(connectable)
-            e = Scenic::Adapters::Postgres::ConcurrentRefreshesNotSupportedError
+            e = Fx::Adapters::Postgres::ConcurrentRefreshesNotSupportedError
 
             expect {
               adapter.refresh_materialized_view(:tests, concurrently: true)

@@ -1,4 +1,4 @@
-module Scenic
+module Fx
   module Adapters
     class Postgres
       # Updatine a materialized view causes the view to be dropped and

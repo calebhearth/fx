@@ -9,20 +9,20 @@ require "scenic/version"
 require "scenic/view"
 require "scenic/index"
 
-# Scenic adds methods `ActiveRecord::Migration` to create and manage database
+# Fx adds methods `ActiveRecord::Migration` to create and manage database
 # views in Rails applications.
-module Scenic
-  # Hooks Scenic into Rails.
+module Fx
+  # Hooks Fx into Rails.
   #
   # Enables scenic migration methods, migration reversability, and `schema.rb`
   # dumping.
   def self.load
-    ActiveRecord::ConnectionAdapters::AbstractAdapter.include Scenic::Statements
-    ActiveRecord::Migration::CommandRecorder.include Scenic::CommandRecorder
-    ActiveRecord::SchemaDumper.prepend Scenic::SchemaDumper
+    ActiveRecord::ConnectionAdapters::AbstractAdapter.include Fx::Statements
+    ActiveRecord::Migration::CommandRecorder.include Fx::CommandRecorder
+    ActiveRecord::SchemaDumper.prepend Fx::SchemaDumper
   end
 
-  # The current database adapter used by Scenic.
+  # The current database adapter used by Fx.
   #
   # This defaults to {Adapters::Postgres} but can be overridden
   # via {Configuration}.

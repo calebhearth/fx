@@ -1,6 +1,6 @@
 require "spec_helper"
 
-module Scenic::CommandRecorder
+module Fx::CommandRecorder
   describe StatementArguments do
     describe "#view" do
       it "is the view name" do

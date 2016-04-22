@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe Scenic::CommandRecorder do
+describe Fx::CommandRecorder do
   describe "#create_view" do
     it "records the created view" do
       recorder.create_view :greetings

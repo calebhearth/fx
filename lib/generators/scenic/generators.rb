@@ -1,5 +1,5 @@
-module Scenic
-  # Scenic provides generators for creating and updating views and ActiveRecord
+module Fx
+  # Fx provides generators for creating and updating views and ActiveRecord
   # models that are backed by views.
   #
   # See:

@@ -1,6 +1,6 @@
 require "scenic/command_recorder/statement_arguments"
 
-module Scenic
+module Fx
   # @api private
   module CommandRecorder
     def create_view(*args)

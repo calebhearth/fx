@@ -1,6 +1,6 @@
 require "spec_helper"
 
-module Scenic
+module Fx
   module Adapters
     describe Postgres::Views, :db do
       it "returns scenic view objects for plain old views" do

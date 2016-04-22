@@ -1,6 +1,6 @@
 # News
 
-The noteworthy changes for each Scenic version are included here. For a complete
+The noteworthy changes for each Fx version are included here. For a complete
 changelog, see the [CHANGELOG] for each version via the version links.
 
 [CHANGELOG]: https://github.com/thoughtbot/scenic/commits/master
@@ -46,7 +46,7 @@ master.
 - The schema dumper will now dump views and materialized views together in the
   order they are returned by Postgres. This fixes issues when loading views that
   depend on other views via `rake db:schema:load`.
-- Scenic now works on [supported versions of Postgres] older than 9.3.0.
+- Fx now works on [supported versions of Postgres] older than 9.3.0.
   Attempts to use database features not supported by your specific version of
   Postgres will raise descriptive errors.
 - Fixed inability to dump materialized views in Rails 5.0.0.beta1.
@@ -58,7 +58,7 @@ master.
 
 ### Added
 - Added support for [materialized views].
-- Allow changing the database adapter via `Scenic::Configuration`.
+- Allow changing the database adapter via `Fx::Configuration`.
 
 ### Fixed
 - Improved formatting of the view when dumped to `schema.rb`.
@@ -101,7 +101,7 @@ master.
 
 ## [0.1.0] - August 4, 2014
 
-Scenic makes it easier to work with Postgres views in Rails.
+Fx makes it easier to work with Postgres views in Rails.
 
 It introduces view methods to ActiveRecord::Migration and allows views to be
 dumped to db/schema.rb.  It provides generators for models, view definitions,

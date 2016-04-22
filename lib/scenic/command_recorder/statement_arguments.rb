@@ -1,4 +1,4 @@
-module Scenic
+module Fx
   module CommandRecorder
     # @api private
     class StatementArguments

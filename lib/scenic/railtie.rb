@@ -1,14 +1,14 @@
 require "rails/railtie"
 
-module Scenic
-  # Automatically initializes Scenic in the context of a Rails application when
+module Fx
+  # Automatically initializes Fx in the context of a Rails application when
   # ActiveRecord is loaded.
   #
-  # @see Scenic.load
+  # @see Fx.load
   class Railtie < Rails::Railtie
     initializer "scenic.load" do
       ActiveSupport.on_load :active_record do
-        Scenic.load
+        Fx.load
       end
     end
   end

@@ -1,4 +1,4 @@
-module Scenic
+module Fx
   module Adapters
     class Postgres
       # Fetches defined views from the postgres connection.
@@ -13,7 +13,7 @@ module Scenic
         # This will include materialized views if those are supported by the
         # connection.
         #
-        # @return [Array<Scenic::View>]
+        # @return [Array<Fx::View>]
         def all
           views_from_postgres.map(&method(:to_scenic_view))
         end
@@ -39,7 +39,7 @@ module Scenic
         end
 
         def to_scenic_view(result)
-          Scenic::View.new(
+          Fx::View.new(
             name: result["viewname"],
             definition: result["definition"].strip,
             materialized: result["kind"] == "m",

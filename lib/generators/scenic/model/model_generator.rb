@@ -3,11 +3,11 @@ require "rails/generators/rails/model/model_generator"
 require "generators/scenic/view/view_generator"
 require "generators/scenic/materializable"
 
-module Scenic
+module Fx
   module Generators
     # @api private
     class ModelGenerator < Rails::Generators::NamedBase
-      include Scenic::Generators::Materializable
+      include Fx::Generators::Materializable
       source_root File.expand_path("../templates", __FILE__)
 
       def invoke_rails_model_generator

@@ -4,35 +4,35 @@ require_relative "postgres/index_reapplication"
 require_relative "postgres/indexes"
 require_relative "postgres/views"
 
-module Scenic
-  # Scenic database adapters.
+module Fx
+  # Fx database adapters.
   #
-  # Scenic ships with a Postgres adapter only but can be extended with
+  # Fx ships with a Postgres adapter only but can be extended with
   # additional adapters. The {Adapters::Postgres} adapter provides the
   # interface.
   module Adapters
     # An adapter for managing Postgres views.
     #
-    # These methods are used interally by Scenic and are not intended for direct
+    # These methods are used interally by Fx and are not intended for direct
     # use. Methods that alter database schema are intended to be called via
     # {Statements}, while {#refresh_materialized_view} is called via
-    # {Scenic.database}.
+    # {Fx.database}.
     #
-    # The methods are documented here for insight into specifics of how Scenic
+    # The methods are documented here for insight into specifics of how Fx
     # integrates with Postgres and the responsibilities of {Adapters}.
     class Postgres
-      # Creates an instance of the Scenic Postgres adapter.
+      # Creates an instance of the Fx Postgres adapter.
       #
-      # This is the default adapter for Scenic. Configuring it via
-      # {Scenic.configure} is not required, but the example below shows how one
+      # This is the default adapter for Fx. Configuring it via
+      # {Fx.configure} is not required, but the example below shows how one
       # would explicitly set it.
       #
       # @param [#connection] connectable An object that returns the connection
-      #   for Scenic to use. Defaults to `ActiveRecord::Base`.
+      #   for Fx to use. Defaults to `ActiveRecord::Base`.
       #
       # @example
-      #  Scenic.configure do |config|
-      #    config.adapter = Scenic::Adapters::Postgres.new
+      #  Fx.configure do |config|
+      #    config.adapter = Fx::Adapters::Postgres.new
       #  end
       def initialize(connectable = ActiveRecord::Base)
         @connectable = connectable
@@ -40,10 +40,10 @@ module Scenic
 
       # Returns an array of views in the database.
       #
-      # This collection of views is used by the [Scenic::SchemaDumper] to
+      # This collection of views is used by the [Fx::SchemaDumper] to
       # populate the `schema.rb` file.
       #
-      # @return [Array<Scenic::View>]
+      # @return [Array<Fx::View>]
       def views
         Views.new(connection).all
       end
@@ -148,7 +148,7 @@ module Scenic
 
       # Refreshes a materialized view from its SQL schema.
       #
-      # This is typically called from application code via {Scenic.database}.
+      # This is typically called from application code via {Fx.database}.
       #
       # @param name The name of the materialized view to refresh.
       # @param concurrently [Boolean] Whether the refreshs hould happen
@@ -165,9 +165,9 @@ module Scenic
       #   concurrent materialized view refreshes.
       #
       # @example Non-concurrent refresh
-      #   Scenic.database.refresh_materialized_view(:search_results)
+      #   Fx.database.refresh_materialized_view(:search_results)
       # @example Concurrent refresh
-      #   Scenic.database.refresh_materialized_view(:posts, concurrent: true)
+      #   Fx.database.refresh_materialized_view(:posts, concurrent: true)
       #
       # @return [void]
       def refresh_materialized_view(name, concurrently: false)

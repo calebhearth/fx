@@ -1,4 +1,4 @@
-module Scenic
+module Fx
   # @api private
   class Definition
     def initialize(name, version)

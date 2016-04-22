@@ -1,4 +1,4 @@
-module Scenic
+module Fx
   module Adapters
     class Postgres
       # Fetches indexes on objects from the Postgres connection.
@@ -12,7 +12,7 @@ module Scenic
         # Indexes on the provided object.
         #
         # @param name [String] The name of the object we want indexes from.
-        # @return [Array<Scenic::Index>]
+        # @return [Array<Fx::Index>]
         def on(name)
           indexes_on(name).map(&method(:index_from_database))
         end
@@ -41,7 +41,7 @@ module Scenic
         end
 
         def index_from_database(result)
-          Scenic::Index.new(
+          Fx::Index.new(
             object_name: result["object_name"],
             index_name: result["index_name"],
             definition: result["definition"],

@@ -1,4 +1,4 @@
-module Scenic
+module Fx
   module Adapters
     class Postgres
       # Raised when a materialized view operation is attempted on a database

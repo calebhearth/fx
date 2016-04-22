@@ -1,10 +1,10 @@
 require "spec_helper"
 
-module Scenic
-  describe Scenic::Statements do
+module Fx
+  describe Fx::Statements do
     before do
-      adapter = instance_double("Scenic::Adapaters::Postgres").as_null_object
-      allow(Scenic).to receive(:database).and_return(adapter)
+      adapter = instance_double("Fx::Adapaters::Postgres").as_null_object
+      allow(Fx).to receive(:database).and_return(adapter)
     end
 
     describe "create_view" do
@@ -17,7 +17,7 @@ module Scenic
 
         connection.create_view :views, version: version
 
-        expect(Scenic.database).to have_received(:create_view)
+        expect(Fx.database).to have_received(:create_view)
           .with(:views, definition_stub.to_sql)
       end
 
@@ -26,7 +26,7 @@ module Scenic
 
         connection.create_view(:views, sql_definition: sql_definition)
 
-        expect(Scenic.database).to have_received(:create_view)
+        expect(Fx.database).to have_received(:create_view)
           .with(:views, sql_definition)
       end
 
@@ -40,11 +40,11 @@ module Scenic
     describe "create_view :materialized" do
       it "sends the create_materialized_view message" do
         allow(Definition).to receive(:new)
-          .and_return(instance_double("Scenic::Definition").as_null_object)
+          .and_return(instance_double("Fx::Definition").as_null_object)
 
         connection.create_view(:views, version: 1, materialized: true)
 
-        expect(Scenic.database).to have_received(:create_materialized_view)
+        expect(Fx.database).to have_received(:create_materialized_view)
       end
     end
 
@@ -52,7 +52,7 @@ module Scenic
       it "removes a view from the database" do
         connection.drop_view :name
 
-        expect(Scenic.database).to have_received(:drop_view).with(:name)
+        expect(Fx.database).to have_received(:drop_view).with(:name)
       end
     end
 
@@ -60,7 +60,7 @@ module Scenic
       it "removes a materialized view from the database" do
         connection.drop_view :name, materialized: true
 
-        expect(Scenic.database).to have_received(:drop_materialized_view)
+        expect(Fx.database).to have_received(:drop_materialized_view)
       end
     end
 
@@ -73,7 +73,7 @@ module Scenic
 
         connection.update_view(:name, version: 3)
 
-        expect(Scenic.database).to have_received(:update_view)
+        expect(Fx.database).to have_received(:update_view)
           .with(:name, definition.to_sql)
       end
 
@@ -85,7 +85,7 @@ module Scenic
 
         connection.update_view(:name, version: 3, materialized: true)
 
-        expect(Scenic.database).to have_received(:update_materialized_view)
+        expect(Fx.database).to have_received(:update_materialized_view)
           .with(:name, definition.to_sql)
       end
 

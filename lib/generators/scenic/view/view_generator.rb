@@ -2,12 +2,12 @@ require "rails/generators"
 require "rails/generators/active_record"
 require "generators/scenic/materializable"
 
-module Scenic
+module Fx
   module Generators
     # @api private
     class ViewGenerator < Rails::Generators::NamedBase
       include Rails::Generators::Migration
-      include Scenic::Generators::Materializable
+      include Fx::Generators::Materializable
       source_root File.expand_path("../templates", __FILE__)
 
       def create_views_directory
@@ -78,11 +78,11 @@ module Scenic
       end
 
       def definition
-        Scenic::Definition.new(plural_file_name, version)
+        Fx::Definition.new(plural_file_name, version)
       end
 
       def previous_definition
-        Scenic::Definition.new(plural_file_name, previous_version)
+        Fx::Definition.new(plural_file_name, previous_version)
       end
 
       def plural_file_name

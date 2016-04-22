@@ -1,6 +1,6 @@
 require "rails"
 
-module Scenic
+module Fx
   # @api private
   module SchemaDumper
     def tables(stream)
@@ -22,7 +22,7 @@ module Scenic
     private
 
     def dumpable_views_in_database
-      @dumpable_views_in_database ||= Scenic.database.views.reject do |view|
+      @dumpable_views_in_database ||= Fx.database.views.reject do |view|
         ignored?(view.name)
       end
     end

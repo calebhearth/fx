@@ -1,25 +1,23 @@
-# Scenic
-
-![Scenic Landscape](https://images.thoughtbot.com/announcing-scenic--versioned-database-views-for-rails/MRUcPsxrTGCeWKyE59Zg_landscape.png)
+# f(x)
 
 [![Build Status](https://travis-ci.org/thoughtbot/scenic.svg)](https://travis-ci.org/thoughtbot/scenic)
 [![Code Climate](https://codeclimate.com/repos/53c9736269568066a3000c35/badges/85aa9b19f3037252c55d/gpa.svg)](https://codeclimate.com/repos/53c9736269568066a3000c35/feed)
 [![Documentation Quality](http://inch-ci.org/github/thoughtbot/scenic.svg?branch=master)](http://inch-ci.org/github/thoughtbot/scenic)
 
-Scenic adds methods to `ActiveRecord::Migration` to create and manage database
+f(x) adds methods to `ActiveRecord::Migration` to create and manage database
 views in Rails.
 
-Using Scenic, you can bring the power of SQL views to your Rails application
-without having to switch your schema format to SQL. Scenic provides a convention
+Using f(x), you can bring the power of SQL views to your Rails application
+without having to switch your schema format to SQL. f(x) provides a convention
 for versioning views that keeps your migration history consistent and reversible
 and avoids having to duplicate SQL strings across migrations. As an added bonus,
 you define the structure of your view in a SQL file, meaning you get full SQL
 syntax highlighting in the editor of your choice and can easily test your SQL in
 the database console during development.
 
-Scenic ships with support for PostgreSQL. The adapter is configurable (see
-`Scenic::Configuration`) and has a minimal interface (see
-`Scenic::Adapters::Postgres`) that other gems can provide.
+f(x) ships with support for PostgreSQL. The adapter is configurable (see
+`Fx::Configuration`) and has a minimal interface (see `Fx::Adapters::Postgres`)
+that other gems can provide.
 
 ## Great, how do I create a view?
 
@@ -65,7 +63,7 @@ $ rake db:migrate
 
 ## Cool, but what if I need to change that view?
 
-Here's where Scenic really shines. Run that same view generator once more:
+Here's where f(x) really shines. Run that same view generator once more:
 
 ```sh
 $ rails generate scenic:view search_results
@@ -73,7 +71,7 @@ $ rails generate scenic:view search_results
       create  db/migrate/[TIMESTAMP]_update_search_results_to_version_2.rb
 ```
 
-Scenic detected that we already had an existing `search_results` view at version
+f(x) detected that we already had an existing `search_results` view at version
 1, created a copy of that definition as version 2, and created a migration to
 update to the version 2 schema. All that's left for you to do is tweak the
 schema in the new definition and run the `update_view` migration.
@@ -99,9 +97,9 @@ class SearchResult < ActiveRecord::Base
 end
 ```
 
-Scenic even provides a `scenic:model` generator that is a superset of
+f(x) even provides a `scenic:model` generator that is a superset of
 `scenic:view`.  It will act identically to the Rails `model` generator except
-that it will create a Scenic view migration rather than a table migration.
+that it will create a f(x) view migration rather than a table migration.
 
 There is no special base class or mixin needed. If desired, any code the model
 generator adds can be removed without worry.
@@ -120,7 +118,7 @@ $ rails generate scenic:model recent_status
 ## What about materialized views?
 
 Materialized views are essentially SQL queries whose results can be cached to a
-table, indexed, and periodically refreshed when desired. Does Scenic support
+table, indexed, and periodically refreshed when desired. Does f(x) support
 those? Of course!
 
 The `scenic:view` and `scenic:model` generators accept a `--materialized`
@@ -130,7 +128,7 @@ refreshes:
 
 ```ruby
 def self.refresh
-  Scenic.database.refresh_materialized_view(table_name, concurrently: false)
+  Fx.database.refresh_materialized_view(table_name, concurrently: false)
 end
 ```
 
@@ -141,7 +139,7 @@ at least one unique index that covers all rows.
 
 ## I don't need this view anymore. Make it go away.
 
-Scenic gives you `drop_view` too:
+f(x) gives you `drop_view` too:
 
 ```ruby
 def change
@@ -186,14 +184,14 @@ We have no plans to add first-party support for MySQL at this time because we
 maintaining a library effectively requires regular use of its features. We're
 not in a good position to support MySQL users.
 
-Scenic *does* support configuring different database adapters and should be
+f(x) *does* support configuring different database adapters and should be
 extendable with adapter libraries. If you implement such an adapter, we're happy
 to review and link to it. We're also happy to make changes that would better
 accommodate adapter gems.
 
 ## About
 
-Scenic is maintained by [Derek Prior] and [Caleb Thompson], funded by
+f(x) is maintained by [Derek Prior] and [Caleb Thompson], funded by
 thoughtbot, inc. The names and logos for thoughtbot are trademarks of
 thoughtbot, inc.
 
